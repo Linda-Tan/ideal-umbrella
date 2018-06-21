@@ -1,28 +1,15 @@
-group 'com.github'
-version '0.0.1-SNAPSHOT'
-
-apply plugin: 'java'
-apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
-ext {
-    springBootAdminVersion = '2.0.0'
-    springCloudVersion = 'Finchley.RELEASE'
-}
 
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.boot:spring-boot-starter-webflux')
     compile('de.codecentric:spring-boot-admin-starter-server')
-    compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-server')
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'){
+
+    }
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('io.projectreactor:reactor-test')
 }

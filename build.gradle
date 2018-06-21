@@ -1,30 +1,70 @@
-buildscript {
+/* gradle 主文件 */
+
+//apply plugin: 'java'
+//apply plugin: 'idea'
+//apply plugin: 'org.springframework.boot'
+//apply plugin: 'io.spring.dependency-management'
+//
+
+// 所有子项目的通用配置
+subprojects {
+
+    buildscript {
+        ext {
+            springBootVersion = '2.0.3.RELEASE'
+        }
+        repositories {
+            mavenCentral()
+        }
+        dependencies {
+            classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        }
+    }
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    group = 'com.github'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = 1.8
+
+    jar {
+        manifest.attributes provider: 'gradle'
+    }
+
+    // java编译的时候缺省状态下会因为中文字符而失败
+    [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+
+    //定义版本号
     ext {
         springBootVersion = '2.0.3.RELEASE'
+        springBootAdminVersion = '2.0.0'
+        springCloudVersion = 'Finchley.RELEASE'
     }
+
     repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
         mavenCentral()
+        jcenter()
     }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+
+    configurations {
+        // 所有需要忽略的包定义在此
+        //all*.exclude group: 'commons-httpclient'
+        //all*.exclude group: 'commons-logging'
+        //all*.exclude group: 'commons-beanutils', module: 'commons-beanutils'
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-
-group = 'com.github'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
+task('showProjectPlugins'){
+    doLast {
+        println "当前项目 $project.name 插件有："
+        project.plugins.find {
+            println "$it"
+        }
+    }
 }
 
-
-dependencies {
-    compile('org.springframework.boot:spring-boot-starter')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-}
+// 默认执行的 task，当执行 Gradle 没有携带指定的 task 参数
+defaultTasks 'showProjectPlugins'
