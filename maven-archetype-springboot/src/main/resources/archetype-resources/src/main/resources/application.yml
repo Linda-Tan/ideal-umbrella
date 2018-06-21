@@ -1,3 +1,10 @@
+
+server:
+    port: 8080
+    connection-timeout: 5000ms
+    servlet:
+      context-path: /
+
 debug: false
 
 logging:
@@ -12,6 +19,7 @@ spring:
   transaction:
     rollback-on-commit-failure: true
   mvc:
+    throw-exception-if-no-handler-found: true
     servlet:
       load-on-startup: 1
   aop:
@@ -24,3 +32,6 @@ spring:
       charset: utf-8
     converters:
       preferred-json-mapper: jackson
+  resources:
+    add-mappings: false
+
