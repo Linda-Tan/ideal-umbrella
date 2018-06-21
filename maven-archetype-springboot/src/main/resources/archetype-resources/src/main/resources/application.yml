@@ -6,7 +6,7 @@ logging:
 
 spring:
   application:
-    name: ideal-eureka
+    name: ${artifactId}
 #  profiles:
 #    active: @mvn.profile.active@
   transaction:
