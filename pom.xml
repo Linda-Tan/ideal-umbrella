@@ -4,11 +4,12 @@
 
     <groupId>com.github.ideal</groupId>
     <artifactId>ideal-umbrella</artifactId>
-    <version>${reversion}</version>
+    <version>${revision}</version>
 
     <modules>
         <module>maven-archetype-springboot</module>
         <module>ideal-eureka</module>
+    <module>ideal-gateway</module>
   </modules>
 
     <packaging>pom</packaging>
@@ -16,22 +17,23 @@
     <name>ideal-umbrella</name>
     <description>ideal-umbrella</description>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.3.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+    <!--<parent>-->
+    <!--<groupId>org.springframework.boot</groupId>-->
+    <!--<artifactId>spring-boot-starter-parent</artifactId>-->
+    <!--<version>2.0.3.RELEASE</version>-->
+    <!--<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+    <!--</parent>-->
 
     <properties>
         <!-- -->
-        <reversion>1.0.0</reversion>
+        <revision>1.0.0</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
         <spring-boot.version>2.0.3.RELEASE</spring-boot.version>
-        <lombok.version>1.16.18</lombok.version>
+        <spring-boot-admin.version>2.0.0</spring-boot-admin.version>
+        <lombok.version>1.16.22</lombok.version>
 
     </properties>
 
@@ -47,9 +49,35 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter</artifactId>
+                <version>LATEST</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.security</groupId>
+                        <artifactId>spring-security-rsa</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-dependencies</artifactId>
+                <version>${spring-boot-admin.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -59,22 +87,22 @@
 
     <build>
         <finalName>${project.artifactId}</finalName>
-         <plugins>
-             <plugin>
-                 <groupId>org.springframework.boot</groupId>
-                 <artifactId>spring-boot-maven-plugin</artifactId>
-                 <executions>
-                     <execution>
-                         <!--<id>spring-boot-maven-plugin</id>-->
-                         <!--<goals>
-                             <goal>repackage</goal>
-                         </goals>-->
-                     </execution>
-                 </executions>
-                 <configuration>
-                     <skip>true</skip>
-                 </configuration>
-             </plugin>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>

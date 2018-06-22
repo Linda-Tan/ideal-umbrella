@@ -50,7 +50,7 @@
 
     <root>
         <appender-ref ref="console"/>
-        <springProfile name="test">
+        <springProfile name="!dev">
             <appender-ref ref="info_log"/>
             <appender-ref ref="error_log"/>
         </springProfile>

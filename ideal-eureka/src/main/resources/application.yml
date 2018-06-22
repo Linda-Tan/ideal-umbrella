@@ -1,8 +1,6 @@
 server:
-    port: 8080
+    port: 8761
     connection-timeout: 5000ms
-    servlet:
-      context-path: /
 
 debug: false
 
@@ -13,8 +11,8 @@ logging:
 spring:
   application:
     name: ideal-eureka
-#  profiles:
-#    active: @mvn.profile.active@
+  profiles:
+    active: dev
   transaction:
     rollback-on-commit-failure: true
   mvc:
@@ -31,6 +29,43 @@ spring:
       charset: utf-8
     converters:
       preferred-json-mapper: jackson
-  resources:
-    add-mappings: false
 
+--- # 开发环境**********************************************************************************************************
+spring:
+  profiles: dev
+
+eureka:
+  environment: ${spring.profiles}
+  client:
+    # 定义从注册中心获取注册服务的信息
+    registry-fetch-interval-seconds: 10
+    register-with-eureka: true    #是否将自己注册到eureka server，因为当前应用就是eureka server，所以设置为false
+    fetch-registry: true         #是否从eureka server获取注册信息，因为为单点，所以设置为false
+    serviceurl:
+      defaultzone: http://localhost:${server.port}/eureka/ #设置与eureka server交互的地址，多个地址之间逗号分割
+  instance:
+    hostname: eureka-server   # 指定该eureka实例的主机名
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}        # 将instance id设置成ip:端口的形式
+    prefer-ip-address: true   #心跳间隔
+    health-check-url-path: /actuator/health
+    lease-renewal-interval-in-seconds: 10
+
+  server:
+    enable-self-preservation: false # 设为false，关闭自我保护
+    # 集群之间相互更新节点信息的时间频率
+    peer-eureka-nodes-update-interval-ms: 600000
+    # 设置清理间隔,单位为毫秒,默认为0
+    #eviction-interval-timer-in-ms: 3000
+    # 设置如果eureka server启动时无法从临近eureka server节点获取注册信息，它多久不对外提供注册服务
+    #wait-time-in-ms-when-sync-empty: 600000
+
+spring.boot.admin.context-path: /admin
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

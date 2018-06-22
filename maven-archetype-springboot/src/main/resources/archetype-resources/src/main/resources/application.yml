@@ -1,9 +1,8 @@
-
 server:
-    port: 8080
+    port: -1
     connection-timeout: 5000ms
     servlet:
-      context-path: /
+      context-path:
 
 debug: false
 
@@ -14,8 +13,8 @@ logging:
 spring:
   application:
     name: ${artifactId}
-#  profiles:
-#    active: @mvn.profile.active@
+  profiles:
+    active: dev
   transaction:
     rollback-on-commit-failure: true
   mvc:
@@ -32,6 +31,27 @@ spring:
       charset: utf-8
     converters:
       preferred-json-mapper: jackson
-  resources:
-    add-mappings: false
+#  resources:
+#    add-mappings: false
 
+--- # 开发环境**********************************************************************************************************
+spring:
+  profiles: dev
+
+eureka:
+  instance:
+    health-check-url-path: /actuator/health
+    lease-renewal-interval-in-seconds: 10
+  client:
+    serviceurl:
+      defaultzone: http://localhost:8761/eureka/
+    registry-fetch-interval-seconds: 5
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
