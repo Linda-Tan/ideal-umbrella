@@ -1,8 +1,8 @@
 server:
     port: 0
     connection-timeout: 5000ms
-    servlet:
-      context-path:
+    http2:
+      enabled: true
 
 debug: false
 

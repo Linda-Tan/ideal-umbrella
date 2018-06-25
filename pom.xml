@@ -109,6 +109,9 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+
+                </configuration>
             </plugin>
             <!-- maven 打包指定编译 -->
             <plugin>

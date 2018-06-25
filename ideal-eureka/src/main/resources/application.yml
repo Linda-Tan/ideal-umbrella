@@ -1,6 +1,8 @@
 server:
     port: 8761
     connection-timeout: 5000ms
+    http2:
+      enabled: true
 
 debug: false
 
