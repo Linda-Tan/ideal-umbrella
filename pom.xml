@@ -10,6 +10,8 @@
         <module>maven-archetype-springboot</module>
         <module>ideal-eureka</module>
     <module>ideal-gateway</module>
+    <module>ideal-provider</module>
+    <module>ideal-consumer</module>
   </modules>
 
     <packaging>pom</packaging>
