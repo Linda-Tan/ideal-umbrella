@@ -1,5 +1,5 @@
 server:
-    port: -1
+    port: 0
     connection-timeout: 5000ms
     servlet:
       context-path:
