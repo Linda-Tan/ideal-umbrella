@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.ideal</groupId>
@@ -9,10 +10,10 @@
     <modules>
         <module>maven-archetype-springboot</module>
         <module>ideal-eureka</module>
-    <module>ideal-gateway</module>
-    <module>ideal-provider</module>
-    <module>ideal-consumer</module>
-  </modules>
+        <module>ideal-gateway</module>
+        <module>ideal-provider</module>
+        <module>ideal-consumer</module>
+    </modules>
 
     <packaging>pom</packaging>
 
@@ -20,14 +21,14 @@
     <description>ideal-umbrella</description>
 
     <!--<parent>-->
-    <!--<groupId>org.springframework.boot</groupId>-->
-    <!--<artifactId>spring-boot-starter-parent</artifactId>-->
-    <!--<version>2.0.3.RELEASE</version>-->
-    <!--<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-parent</artifactId>-->
+        <!--<version>2.0.3.RELEASE</version>-->
+        <!--<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
     <!--</parent>-->
 
     <properties>
-        <!-- -->
+
         <revision>1.0.0</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -45,6 +46,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -98,13 +105,30 @@
                     <execution>
                         <goals>
                             <goal>build-info</goal>
+                            <goal>repackage</goal>
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <!-- maven 打包指定编译 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+
+            </plugin>
+            <!-- maven 打包时跳过测试 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <skip>true</skip>
                 </configuration>
             </plugin>
+            <!-- 对发布的POM进行精简  -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
