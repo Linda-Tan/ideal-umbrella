@@ -40,8 +40,11 @@ spring:
 
 eureka:
   instance:
+    hostname: ideal-consumer
     health-check-url-path: /actuator/health
     lease-renewal-interval-in-seconds: 10
+    instance-id: ${spring.cloud.client.ip-address}       # 将instance id设置成ip:端口的形式
+    prefer-ip-address: true
   client:
     serviceurl:
       defaultzone: http://localhost:8761/eureka/
