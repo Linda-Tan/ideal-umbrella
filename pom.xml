@@ -13,6 +13,7 @@
         <module>ideal-gateway</module>
         <module>ideal-provider</module>
         <module>ideal-consumer</module>
+        <module>ideal-netty-learn</module>
     </modules>
 
     <packaging>pom</packaging>
