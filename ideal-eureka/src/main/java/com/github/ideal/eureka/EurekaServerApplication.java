@@ -4,7 +4,6 @@ package com.github.ideal.eureka;
 import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
@@ -14,7 +13,6 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
  * @author junliang
  */
 @EnableAdminServer
-@EnableAutoConfiguration
 @EnableEurekaServer
 @SpringBootApplication
 @Slf4j

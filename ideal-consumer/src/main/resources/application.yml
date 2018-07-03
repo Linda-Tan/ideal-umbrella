@@ -43,7 +43,7 @@ eureka:
     hostname: ideal-consumer
     health-check-url-path: /actuator/health
     lease-renewal-interval-in-seconds: 10
-    instance-id: ${spring.cloud.client.ip-address}       # 将instance id设置成ip:端口的形式
+    instance-id: ${spring.cloud.client.ip-address}-${random.int(10)} # 将instance id设置成ip-id的形式
     prefer-ip-address: true
   client:
     serviceurl:

@@ -37,6 +37,11 @@ spring:
 --- # 开发环境**********************************************************************************************************
 spring:
   profiles: dev
+  cloud:
+    gateway:
+      enabled: false #If you include the starter, but, for some reason, you do not want the gateway to be enabled
+      routes:
+
 
 eureka:
   instance:

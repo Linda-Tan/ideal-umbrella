@@ -6,7 +6,7 @@
 
     <groupId>com.github.ideal</groupId>
     <artifactId>maven-archetype-springboot</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.1</version>
     <packaging>maven-archetype</packaging>
 
     <name>maven-archetype-springboot</name>

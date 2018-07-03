@@ -1,6 +1,6 @@
 package com.github.ideal.provider.test;
 
-import com.github.ideal.provider.Application;
+import com.github.ideal.provider.ProviderApplication;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author junliang
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class, webEnvironment = WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = ProviderApplication.class, webEnvironment = WebEnvironment.DEFINED_PORT)
 public abstract class SpringBaseTest {
 
     protected static final Logger log = LoggerFactory.getLogger(SpringBaseTest.class);
