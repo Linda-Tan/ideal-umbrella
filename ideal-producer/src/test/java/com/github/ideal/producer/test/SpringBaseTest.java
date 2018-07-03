@@ -1,9 +1,8 @@
-package com.github.ideal.provider.test;
+package com.github.ideal.producer.test;
 
-import com.github.ideal.provider.ProviderApplication;
+import com.github.ideal.producer.ProducerApplication;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -13,10 +12,11 @@ import org.springframework.test.context.junit4.SpringRunner;
  *
  * @author junliang
  */
+@Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ProviderApplication.class, webEnvironment = WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = ProducerApplication.class, webEnvironment = WebEnvironment.DEFINED_PORT)
 public abstract class SpringBaseTest {
 
-    protected static final Logger log = LoggerFactory.getLogger(SpringBaseTest.class);
+    //protected static final Logger log = LoggerFactory.getLogger(SpringBaseTest.class);
 
 }

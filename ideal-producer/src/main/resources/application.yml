@@ -12,7 +12,7 @@ logging:
 
 spring:
   application:
-    name: ideal-provider
+    name: ideal-producer
   profiles:
     active: dev
   transaction:
@@ -32,19 +32,21 @@ spring:
     converters:
       preferred-json-mapper: jackson
 
-
 --- # 开发环境**********************************************************************************************************
 spring:
   profiles: dev
 
 eureka:
   instance:
+    hostname: ${spring.application.name}
     health-check-url-path: /actuator/health
-#    lease-renewal-interval-in-seconds: 10
+    lease-renewal-interval-in-seconds: 10
+    instance-id: ${spring.cloud.client.ip-address}-${random.int(10)} # 将instance id设置成ip-id的形式
+    prefer-ip-address: true
   client:
     serviceurl:
-      defaultzone: http://localhost:7000/eureka/
-#    registry-fetch-interval-seconds: 5
+      defaultzone: http://localhost:8761/eureka/
+    registry-fetch-interval-seconds: 5
 
 management:
   endpoints:
@@ -53,4 +55,4 @@ management:
         include: "*"
   endpoint:
     health:
-      show-details: ALWAYS
+      show-details: always

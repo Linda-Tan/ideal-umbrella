@@ -11,7 +11,7 @@
         <module>maven-archetype-springboot</module>
         <module>ideal-eureka</module>
         <module>ideal-gateway</module>
-        <module>ideal-provider</module>
+        <module>ideal-producer</module>
         <module>ideal-consumer</module>
         <module>ideal-netty-learn</module>
     </modules>
