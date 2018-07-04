@@ -1,9 +1,8 @@
-package com.github.ideal.gateway;
+package com.github.ideal;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * SpringBoot 启动类
@@ -11,7 +10,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @author junliang
  */
 @SpringBootApplication
-@EnableDiscoveryClient
 @Slf4j
 public class Application {
 

@@ -5,12 +5,12 @@
     <parent>
         <artifactId>ideal-umbrella</artifactId>
         <groupId>com.github.ideal</groupId>
-        <version>1.0.0</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>ideal-netty-learn</artifactId>
-    <version>1.0.0</version>
+    <version>${revision}</version>
 
 
     <properties>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>5.0.0.Alpha1</version>
+            <version>4.1.25.Final</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

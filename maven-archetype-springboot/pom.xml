@@ -19,6 +19,10 @@
         </developer>
     </developers>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <build>
         <extensions>
             <extension>
@@ -29,6 +33,9 @@
         <plugins>
             <plugin>
                 <artifactId>maven-archetype-plugin</artifactId>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -43,6 +50,7 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
+                    <encoding>UTF-8</encoding>
                     <skip>true</skip>
                 </configuration>
             </plugin>

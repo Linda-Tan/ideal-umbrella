@@ -1,0 +1,65 @@
+server:
+    port: 0
+    connection-timeout: 5000ms
+    http2:
+      enabled: true
+
+debug: false
+
+logging:
+  level:
+    root: info
+
+spring:
+  application:
+    name: ideal-provider
+  profiles:
+    active: dev
+  transaction:
+    rollback-on-commit-failure: true
+  mvc:
+    throw-exception-if-no-handler-found: true
+    servlet:
+      load-on-startup: 1
+  aop:
+    auto: true
+    proxy-target-class: true
+  http:
+    encoding:
+      enabled: true
+      force: true
+      charset: utf-8
+    converters:
+      preferred-json-mapper: jackson
+#  resources:
+#    add-mappings: false
+
+--- # 开发环境**********************************************************************************************************
+spring:
+  profiles: dev
+  zipkin:
+      base-url: http://118.25.45.144:9411   #指定zipkin的服务端，用于发送链路调用报告
+  sleuth:
+      sampler:
+        probability: 1.0 #采样率，值为[0,1]之间的任意实数，顾名思义，这里代表100%采集报告。
+
+eureka:
+  instance:
+    hostname: ${spring.application.name}
+    health-check-url-path: /actuator/health
+#    lease-renewal-interval-in-seconds: 10   #心跳间隔 默认30
+    instance-id: ${spring.cloud.client.ip-address}-${random.int(10)} # 将instance id设置成ip-id的形式
+    prefer-ip-address: true
+  client:
+    serviceurl:
+      defaultzone: http://localhost:8761/eureka/
+#    registry-fetch-interval-seconds: 10  # 定义从注册中心获取注册服务的信息 默认30
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

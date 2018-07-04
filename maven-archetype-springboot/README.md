@@ -11,13 +11,13 @@ clone 项目 先**install**  **maven-archetype-springboot**
 ```bash
 mvn archetype:generate \
 -DgroupId=com.github.ideal \
--DartifactId=ideal-gateway \
+-DartifactId=ideal-provider \
 -Dpackage=com.github.ideal \
 -DarchetypeArtifactId=maven-archetype-springboot \
 -DinteractiveMode=false \
  -DarchetypeCatalog=local \
  -DarchetypeGroupId=com.github.ideal \
- -DarchetypeVersion=1.0.1
+ -DarchetypeVersion=1.1.1
 ```
 ```
 mvn archetype:generate ^
