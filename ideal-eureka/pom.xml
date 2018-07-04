@@ -11,7 +11,7 @@
 
     <groupId>com.github.ideal</groupId>
     <artifactId>ideal-eureka</artifactId>
-    <version>${reversion}</version>
+    <version>${revision}</version>
     <packaging>jar</packaging>
 
     <name>ideal-eureka</name>

@@ -37,18 +37,23 @@ spring:
 --- # 开发环境**********************************************************************************************************
 spring:
   profiles: dev
+  zipkin:
+      base-url: http://118.25.45.144:9411   #指定zipkin的服务端，用于发送链路调用报告
+  sleuth:
+      sampler:
+        probability: 1.0 #采样率，值为[0,1]之间的任意实数，顾名思义，这里代表100%采集报告。
 
 eureka:
   instance:
     hostname: ${spring.application.name}
     health-check-url-path: /actuator/health
-    lease-renewal-interval-in-seconds: 10
+#    lease-renewal-interval-in-seconds: 10   #心跳间隔 默认30
     instance-id: ${spring.cloud.client.ip-address}-${random.int(10)} # 将instance id设置成ip-id的形式
     prefer-ip-address: true
   client:
     serviceurl:
       defaultzone: http://localhost:8761/eureka/
-    registry-fetch-interval-seconds: 5
+#    registry-fetch-interval-seconds: 10  # 定义从注册中心获取注册服务的信息 默认30
 
 management:
   endpoints:
