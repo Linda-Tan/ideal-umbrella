@@ -152,6 +152,7 @@
                         </goals>
                         <configuration>
                             <classifier>exec</classifier>
+                            <executable>true</executable>
                             <additionalProperties>
                                 <encoding.source>UTF-8</encoding.source>
                                 <encoding.reporting>UTF-8</encoding.reporting>
